@@ -9,7 +9,12 @@
   <body>
     <article>
       <h1>MEMO</h1>
-      
+      <button class="create" type="button">追加</button>
+      <ul>
+      <% for i in 1 .. 4 do %>
+        <li><a href="/views/memo<%= i %>">メモ<%= i %></a></li>
+      <% end %>
+      </ul>
     </article>
   </body>
   
