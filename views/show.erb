@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>ちはそのメモアプリ_表示</title>
+  </head>
+
+  <body>
+    <article>
+      <h1>MEMO</h1>
+      <h2>メモ:</h2>
+      <% memo_text = File.open("./memo_data/#{@num}").read.gsub("\n", "<br>") %>
+      <p><%= memo_text %></p>
+      <button class="create" type="button">編集</button>
+    </article>
+  </body>
