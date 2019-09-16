@@ -9,10 +9,10 @@
   <body>
     <article>
       <h1>MEMO</h1>
-      <button class="create" type="button">追加</button>
+      <a href="/new"><input type="button" value="メモを追加"></a>
       <ul>
       <% for i in 1 .. 4 do %>
-        <li><a href="/views/memo<%= i %>">メモ<%= i %></a></li>
+        <li><a href="/show/<%= i %>">メモ<%= i %></a></li>
       <% end %>
       </ul>
     </article>
