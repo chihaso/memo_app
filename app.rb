@@ -6,7 +6,7 @@ get '/' do
   erb :top
 end
 
-get '/show/*' do |num|
+get '/show_*' do |num|
   @num = num
   erb :show
 end
@@ -28,5 +28,17 @@ end
 
 post '/delete_*' do |num|
   FileUtils.rm("./memo_data/#{num}")
+  erb :top
+end
+
+get '/edit_*' do |num|
+  @num = num
+  erb :edit
+end
+
+post '/update_*' do |num|
+  File.open("./memo_data/#{num}", 'w') { |f|
+    f.puts params[:memo]
+  }
   erb :top
 end
