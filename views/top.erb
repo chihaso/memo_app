@@ -11,10 +11,9 @@
       <h1>MEMO</h1>
       <a href="/new"><input type="button" value="メモを追加"></a>
       <ul>
-      <% for i in 1 .. 4 do %>
-        <li><a href="/show_<%= i %>">メモ<%= i %></a></li>
-      <% end %>
+        <% @file_numbers.each { |num| %>
+          <li><a href="/show_<%= num %>">メモ<%= num %></a></li>
+        <% } %>
       </ul>
     </article>
   </body>
-  

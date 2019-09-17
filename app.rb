@@ -3,6 +3,9 @@ require 'sinatra/reloader'
 require 'fileutils'
 
 get '/' do
+  @file_numbers = Dir.glob('./memo_data/*').map { |fn|
+    fn.delete('^0-9').to_i
+  }.sort
   erb :top
 end
 
@@ -23,12 +26,12 @@ post '/create' do
   File.open("./memo_data/#{latest_number + 1}", 'w', 0o0777) { |f|
     f.puts params[:memo]
   }
-  erb :top
+  redirect to('/')
 end
 
 post '/delete_*' do |num|
   FileUtils.rm("./memo_data/#{num}")
-  erb :top
+  redirect to('/')
 end
 
 get '/edit_*' do |num|
@@ -40,5 +43,5 @@ post '/update_*' do |num|
   File.open("./memo_data/#{num}", 'w') { |f|
     f.puts params[:memo]
   }
-  erb :top
+  redirect to('/')
 end

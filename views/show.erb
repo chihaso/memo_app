@@ -11,8 +11,8 @@
       <h1>MEMO</h1>
       <h2>メモ<%=@num%>:</h2>
       <% memo_text = File.open("./memo_data/#{@num}").read.gsub("\n", "<br>") %>
-      <p><%= memo_text %></p>
-      <input type="button" value="編集">
+      <p><%=memo_text%></p>
+      <a href="/edit_<%=@num%>"><input type="button" value="編集"></a>
       <form method=post action="/delete_<%=@num%>">
         <input type="submit" value="削除">
       </form>
