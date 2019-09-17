@@ -14,6 +14,7 @@
       <p><%=memo_text%></p>
       <a href="/edit_<%=@num%>"><input type="button" value="編集"></a>
       <form method=post action="/delete_<%=@num%>">
+        <input type="hidden" name="_method" value="DELETE">
         <input type="submit" value="削除">
       </form>
     </article>

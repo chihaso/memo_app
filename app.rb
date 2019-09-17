@@ -2,6 +2,8 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'fileutils'
 
+enable  :method_override
+
 get '/' do
   @file_numbers = Dir.glob('./memo_data/*').map { |fn|
     fn.delete('^0-9').to_i
@@ -29,7 +31,7 @@ post '/create' do
   redirect to('/')
 end
 
-post '/delete_*' do |num|
+delete '/delete_*' do |num|
   FileUtils.rm("./memo_data/#{num}")
   redirect to('/')
 end
@@ -39,7 +41,7 @@ get '/edit_*' do |num|
   erb :edit
 end
 
-post '/update_*' do |num|
+patch '/update_*' do |num|
   File.open("./memo_data/#{num}", 'w') { |f|
     f.puts params[:memo]
   }
