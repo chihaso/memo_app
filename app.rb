@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/reloader'
+require 'fileutils'
 
 get '/' do
   erb :top
@@ -22,5 +23,10 @@ post '/create' do
   File.open("./memo_data/#{latest_number + 1}", 'w', 0o0777) { |f|
     f.puts params[:memo]
   }
+  erb :top
+end
+
+post '/delete_*' do |num|
+  FileUtils.rm("./memo_data/#{num}")
   erb :top
 end

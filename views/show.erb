@@ -3,15 +3,18 @@
 
   <head>
     <meta charset="utf-8">
-    <title>ちはそのメモアプリ_表示</title>
+    <title>ちはそのメモアプリ_メモ<%=@num%></title>
   </head>
 
   <body>
     <article>
       <h1>MEMO</h1>
-      <h2>メモ:</h2>
+      <h2>メモ<%=@num%>:</h2>
       <% memo_text = File.open("./memo_data/#{@num}").read.gsub("\n", "<br>") %>
       <p><%= memo_text %></p>
-      <button class="create" type="button">編集</button>
+      <input type="button" value="編集">
+      <form method=post action="/delete_<%=@num%>">
+        <input type="submit" value="削除">
+      </form>
     </article>
   </body>
