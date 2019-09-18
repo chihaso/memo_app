@@ -3,13 +3,15 @@
 
   <head>
     <meta charset="utf-8">
-    <title>ちはそのメモアプリ_メモ<%=@num%></title>
+    <title>ちはそのメモアプリ_メモ表示<%=@num%></title>
     <link rel="stylesheet" type="text/css" href="./css/general.css">
   </head>
 
   <body>
     <article>
-      <h1>MEMO</h1>
+      <div class="top_containor">
+        <h1><a href="/">MEMO</a></h1>
+      </div>
       <h2>メモ<%=@num%>:</h2>
       <% memo_text = File.open("./memo_data/#{@num}").read.gsub("\n", "<br>") %>
       <p class="memo_text"><%=memo_text%></p>

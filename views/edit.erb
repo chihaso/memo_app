@@ -3,13 +3,15 @@
 
   <head>
     <meta charset="utf-8">
-    <title>ちはそのメモアプリ_編集</title>
+    <title>ちはそのメモアプリ_メモ編集</title>
     <link rel="stylesheet" type="text/css" href="./css/general.css">
   </head>
 
   <body>
     <article>
-      <h1>MEMO</h1>
+      <div class="top_containor">
+        <h1><a href="/">MEMO</a></h1>
+      </div>
       <h2>メモ<%=@num%>:</h2>
       <form method=post action=/update_<%=@num%> class="create">
         <input type="hidden",  name="_method", value="PATCH">
