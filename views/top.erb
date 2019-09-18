@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
-
+  
   <head>
     <meta charset="utf-8">
     <title>ちはそのメモアプリ</title>
+    <link rel="stylesheet" type="text/css" href="./css/general.css">
   </head>
 
   <body>
     <article>
-      <h1>MEMO</h1>
-      <a href="/new"><input type="button" value="メモを追加"></a>
+      <div class="top_containor">
+        <h1>MEMO</h1>
+        <a href="/new"><input type="button" value="メモを追加" class="button add"></a>
+      </div>
       <ul>
         <% @file_numbers.each { |num| %>
           <li><a href="/show_<%= num %>">メモ<%= num %></a></li>

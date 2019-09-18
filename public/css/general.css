@@ -1,0 +1,42 @@
+h1{
+  color: #444444;
+  font-size: 2.4rem;
+  font-weight: bold;
+  text-shadow: 0px 1px 2px #DDD;
+}
+
+.button{
+  background-color: #AAA;
+  font-size: 1rem;
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+.top_containor, .buttons{
+  display: flex;
+  align-items: center;
+}
+
+.memo_text{
+  margin-bottom: 40px;
+}
+
+textarea{
+  width: 280px;
+  height: 230px;
+  font-size: 0.9rem;
+  background-color: #DDD;
+  border-radius: 5px;
+  border: solid 2px #BBB;
+}
+
+.create{
+  display: flex;
+  flex-direction: column;
+}
+
+.new, .save{
+  margin-top: 20px;
+}
