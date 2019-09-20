@@ -14,8 +14,8 @@
         <a href="/new"><input type="button" value="メモを追加" class="button add"></a>
       </div>
       <ul>
-        <% @file_numbers.each { |num| %>
-          <li><a href="/<%= num %>">メモ<%= num %></a></li>
+        <% @file_numbers.each_with_index { |num, i| %>
+          <li><a href="/<%= num %>">メモ: <%= @first_lines[i] %>...</a></li>
         <% } %>
       </ul>
     </article>

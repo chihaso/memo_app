@@ -6,10 +6,16 @@ require 'fileutils'
 
 enable  :method_override
 
+def random_number_generator(n)
+  ''.dup.tap { |s| n.times { s << rand(0..9).to_s } }
+end
+
 # トップ（index）ページ
 get '/' do
   file_names = Dir.glob('./memo_data/*')
-  @file_numbers = file_names.map { |fn| fn.delete!('^0-9').to_i }.sort
+  @first_lines = []
+  file_names.each { |fn| @first_lines << File.open(fn, 'r').gets }
+  @file_numbers = file_names.map { |fn| fn.delete!('^0-9').to_i }
   erb :top
 end
 
@@ -20,10 +26,7 @@ end
 
 # 新規メモ作成
 post '/' do
-  file_names = Dir.glob('./memo_data/*')
-  file_numbers = file_names.map { |fn| fn.delete!('^0-9').to_i }.sort
-  latest_number = file_numbers.max
-  memo_file = File.open("./memo_data/#{latest_number + 1}", 'w', 0o0666)
+  memo_file = File.open("./memo_data/#{random_number_generator(10)}", 'w', 0o0666)
   memo_file.puts params[:memo]
   memo_file.close
   redirect to('/')
