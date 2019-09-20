@@ -22,7 +22,7 @@ post '/' do
   redirect to('/')
 end
 
-get '/show_*' do |num|
+get '/*' do |num|
   @num = num
   erb :show
 end

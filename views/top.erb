@@ -15,7 +15,7 @@
       </div>
       <ul>
         <% @file_numbers.each { |num| %>
-          <li><a href="/show_<%= num %>">メモ<%= num %></a></li>
+          <li><a href="/<%= num %>">メモ<%= num %></a></li>
         <% } %>
       </ul>
     </article>
