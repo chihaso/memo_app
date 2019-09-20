@@ -13,7 +13,9 @@ end
 # トップ（index）ページ
 get '/' do
   file_names = Dir.glob('./memo_data/*')
-  @file_numbers = file_names.map { |fn| fn.delete!('^0-9').to_i }.sort
+  @first_lines = []
+  file_names.each { |fn| @first_lines << File.open(fn, 'r').gets }
+  @file_numbers = file_names.map { |fn| fn.delete!('^0-9').to_i }
   erb :top
 end
 
