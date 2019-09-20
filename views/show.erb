@@ -12,7 +12,7 @@
       <div class="top_containor">
         <h1><a href="/">MEMO</a></h1>
       </div>
-      <h2>メモ<%=@num%>:</h2>
+      <h2>メモ:</h2>
       <% memo_text = File.open("./memo_data/#{@num}").read.gsub("\n", "<br>") %>
       <p class="memo_text"><%=memo_text%></p>
       <div class="buttons">
