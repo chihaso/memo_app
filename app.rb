@@ -44,7 +44,7 @@ patch '/*' do |num|
 end
 
 # メモ削除
-delete '/delete_*' do |num|
+delete '/*' do |num|
   FileUtils.rm("./memo_data/#{num}")
   redirect to('/')
 end
