@@ -12,16 +12,7 @@ get '/' do
   erb :top
 end
 
-get '/show_*' do |num|
-  @num = num
-  erb :show
-end
-
-get '/new' do
-  erb :new
-end
-
-post '/create' do
+post '/' do
   file_names = Dir.glob('./memo_data/*')
   file_numbers = file_names.map { |fn| fn.delete!('^0-9').to_i }.sort
   latest_number = file_numbers.max
@@ -29,6 +20,15 @@ post '/create' do
   memo_file.puts params[:memo]
   memo_file.close
   redirect to('/')
+end
+
+get '/show_*' do |num|
+  @num = num
+  erb :show
+end
+
+get '/new' do
+  erb :new
 end
 
 delete '/delete_*' do |num|
