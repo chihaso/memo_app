@@ -13,8 +13,8 @@
         <h1><a href="/">MEMO</a></h1>
       </div>
       <h2>メモ<%=@num%>:</h2>
-      <form method=post action=/update_<%=@num%> class="create">
-        <input type="hidden",  name="_method", value="PATCH">
+      <form method=post action=/<%=@num%> class="create">
+        <input type="hidden", name="_method", value="PATCH">
         <% memo_text = File.open("./memo_data/#{@num}").read %>
         <textarea name="memo"><%=memo_text%></textarea>
         <input type="submit" value="保存" class="button save">
