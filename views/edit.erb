@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>ちはそのメモアプリ_メモ編集</title>
-    <link rel="stylesheet" type="text/css" href="./css/general.css">
+    <link rel="stylesheet" type="text/css" href="../../css/general.css">
   </head>
 
   <body>
@@ -13,9 +13,9 @@
         <h1><a href="/">MEMO</a></h1>
       </div>
       <h2>メモ:</h2>
-      <form method=post action=/<%=@num%> class="create">
+      <form method=post action=/memos/<%=@id%>/edit class="create">
         <input type="hidden", name="_method", value="PATCH">
-        <% memo_text = File.open("./memo_data/#{@num}").read %>
+        <% memo_text = File.open("./memo_data/#{@id}").read %>
         <textarea name="memo"><%=memo_text%></textarea>
         <input type="submit" value="保存" class="button save">
       </form>

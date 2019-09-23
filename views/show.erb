@@ -3,8 +3,8 @@
 
   <head>
     <meta charset="utf-8">
-    <title>ちはそのメモアプリ_メモ表示<%=@num%></title>
-    <link rel="stylesheet" type="text/css" href="./css/general.css">
+    <title>ちはそのメモアプリ_メモ表示<%=@id%></title>
+    <link rel="stylesheet" type="text/css" href="../css/general.css">
   </head>
 
   <body>
@@ -13,11 +13,11 @@
         <h1><a href="/">MEMO</a></h1>
       </div>
       <h2>メモ:</h2>
-      <% memo_text = File.open("./memo_data/#{@num}").read.gsub("\n", "<br>") %>
+      <% memo_text = File.open("./memo_data/#{@id}").read.gsub("\n", "<br>") %>
       <p class="memo_text"><%=memo_text%></p>
       <div class="buttons">
-        <a href="/edit_<%=@num%>"><input type="button" value="編集" class="button edit"></a>
-        <form method=post action="/<%=@num%>">
+        <a href="/memos/<%=@id%>/edit"><input type="button" value="編集" class="button edit"></a>
+        <form method=post action="/memos/<%=@id%>">
           <input type="hidden" name="_method" value="DELETE">
           <input type="submit" value="削除" class="button delete">
         </form>
