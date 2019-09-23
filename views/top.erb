@@ -15,7 +15,7 @@
       </div>
       <ul>
         <% @file_ids.each_with_index { |id, i| %>
-          <li><a href="/memos/<%= id %>">メモ: <%= @first_lines[i] %>...</a></li>
+          <li><a href="/<%= id %>">メモ: <%= @first_lines[i] %>...</a></li>
         <% } %>
       </ul>
     </article>

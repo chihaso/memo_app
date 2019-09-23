@@ -16,8 +16,8 @@
       <% memo_text = File.open("./memo_data/#{@id}").read.gsub("\n", "<br>") %>
       <p class="memo_text"><%=memo_text%></p>
       <div class="buttons">
-        <a href="/memos/<%=@id%>/edit"><input type="button" value="編集" class="button edit"></a>
-        <form method=post action="/memos/<%=@id%>">
+        <a href="/<%=@id%>/edit"><input type="button" value="編集" class="button edit"></a>
+        <form method=post action="/<%=@id%>">
           <input type="hidden" name="_method" value="DELETE">
           <input type="submit" value="削除" class="button delete">
         </form>

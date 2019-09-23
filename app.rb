@@ -33,13 +33,13 @@ post '/' do
 end
 
 # メモ編集ページ
-get '/memos/:id/edit' do
+get '/:id/edit' do
   @id = params[:id]
   erb :edit
 end
 
 # メモ更新
-patch '/memos/:id/edit' do
+patch '/:id' do
   memo_file = File.open("./memo_data/#{params[:id]}", 'w')
   memo_file.puts params[:memo]
   memo_file.close
@@ -47,13 +47,13 @@ patch '/memos/:id/edit' do
 end
 
 # メモ削除
-delete '/memos/:id' do
+delete '/:id' do
   FileUtils.rm("./memo_data/#{params[:id]}")
   redirect to('/')
 end
 
 # メモ表示ページ
-get '/memos/:id' do
+get '/:id' do
   @id = params[:id]
   erb :show
 end

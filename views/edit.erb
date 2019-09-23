@@ -13,7 +13,7 @@
         <h1><a href="/">MEMO</a></h1>
       </div>
       <h2>メモ:</h2>
-      <form method=post action=/memos/<%=@id%>/edit class="create">
+      <form method=post action=/<%=@id%> class="create">
         <input type="hidden", name="_method", value="PATCH">
         <% memo_text = File.open("./memo_data/#{@id}").read %>
         <textarea name="memo"><%=memo_text%></textarea>
