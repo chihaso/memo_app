@@ -13,8 +13,7 @@
         <h1><a href="/">MEMO</a></h1>
       </div>
       <h2>メモ:</h2>
-      <% memo_text = File.open("./memo_data/#{@id}").read.gsub("\n", "<br>") %>
-      <p class="memo_text"><%=memo_text%></p>
+      <p class="memo_text"><%=@memo_text%></p>
       <div class="buttons">
         <a href="/<%=@id%>/edit"><input type="button" value="編集" class="button edit"></a>
         <form method=post action="/<%=@id%>">

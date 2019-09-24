@@ -11,7 +11,7 @@ get '/' do
   @first_lines = []
   @file_ids =[]
   file_names.each do |fn|
-    @first_lines << File.open(fn, 'r').gets
+    @first_lines << File.open(fn, 'r') { |file| file.gets }
     @file_ids << fn.delete_prefix('./memo_data/')
   end
   erb :top
@@ -24,23 +24,24 @@ end
 
 # 新規メモ作成
 post '/' do
-  memo_file = File.open("./memo_data/#{SecureRandom.uuid}", 'w', 0o0666)
-  memo_file.puts params[:memo]
-  memo_file.close
+  File.open("./memo_data/#{SecureRandom.uuid}", 'w', 0o0666) do |file|
+    file.puts params[:memo]
+  end
   redirect to('/')
 end
 
 # メモ編集ページ
 get '/:id/edit' do
   @id = params[:id]
+  @memo_text = File.read("./memo_data/#{@id}")
   erb :edit
 end
 
 # メモ更新
 patch '/:id' do
-  memo_file = File.open("./memo_data/#{params[:id]}", 'w')
-  memo_file.puts params[:memo]
-  memo_file.close
+  File.open("./memo_data/#{params[:id]}", 'w') do |file|
+    file.puts params[:memo]
+  end
   redirect to('/')
 end
 
@@ -53,5 +54,6 @@ end
 # メモ表示ページ
 get '/:id' do
   @id = params[:id]
+  @memo_text = File.read("./memo_data/#{@id}").gsub("\n", "<br>")
   erb :show
 end
