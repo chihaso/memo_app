@@ -5,8 +5,6 @@ require 'sinatra/reloader'
 require 'fileutils'
 require 'securerandom'
 
-enable  :method_override
-
 # トップ（index）ページ
 get '/' do
   file_names = Dir.glob('./memo_data/*')
