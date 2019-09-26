@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module MyMemoApp
-  class Memo_list
+  class MemoList
     def initialize(path)
       @path = path
       @file_paths = file_paths

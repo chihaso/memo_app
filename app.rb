@@ -3,12 +3,12 @@
 require "sinatra"
 require "sinatra/reloader"
 require "fileutils"
-require "securerandom"
 require "./lib/memo_list.rb"
+require "./lib/new_memo.rb"
 
 # トップ（index）ページ
 get "/" do
-  memo_list = MyMemoApp::Memo_list.new("./memo_data/*")
+  memo_list = MyMemoApp::MemoList.new("./memo_data/*")
   @memo_beginnings = memo_list.beginnings
   @memo_ids = memo_list.names
   erb :top
@@ -21,9 +21,7 @@ end
 
 # 新規メモ作成
 post "/" do
-  File.open("./memo_data/#{SecureRandom.uuid}", "w", 0o0666) do |file|
-    file.puts params[:memo]
-  end
+  MyMemoApp::NewMemo.new("./memo_data/", params[:memo]).save
   redirect to("/")
 end
 
