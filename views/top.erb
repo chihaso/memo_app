@@ -14,9 +14,10 @@
         <a href="/new"><input type="button" value="メモを追加" class="button add"></a>
       </div>
       <ul>
-        <% @file_ids.each_with_index { |id, i| %>
-          <li><a href="/<%= id %>">メモ: <%= @first_lines[i] %>...</a></li>
+        <% @memo_ids.each_with_index { |id, i| %>
+          <li><a href="/<%= id %>">メモ: <%= @memo_beginnings[i] %>...</a></li>
         <% } %>
       </ul>
     </article>
   </body>
+</html>

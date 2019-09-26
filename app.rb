@@ -4,16 +4,13 @@ require "sinatra"
 require "sinatra/reloader"
 require "fileutils"
 require "securerandom"
+require "./lib/memo_list.rb"
 
 # トップ（index）ページ
 get "/" do
-  file_names = Dir.glob("./memo_data/*")
-  @first_lines = []
-  @file_ids =[]
-  file_names.each do |fn|
-    @first_lines << File.open(fn, "r") { |file| file.gets }
-    @file_ids << fn.delete_prefix("./memo_data/")
-  end
+  memo_list = MyMemoApp::Memo_list.new("./memo_data/*")
+  @memo_beginnings = memo_list.beginnings
+  @memo_ids = memo_list.names
   erb :top
 end
 
