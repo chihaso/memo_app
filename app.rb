@@ -5,6 +5,7 @@ require "sinatra/reloader"
 require "fileutils"
 require "./lib/memo_list.rb"
 require "./lib/new_memo.rb"
+require "./lib/memo.rb"
 
 # トップ（index）ページ
 get "/" do
@@ -28,15 +29,13 @@ end
 # メモ編集ページ
 get "/:id/edit" do
   @id = params[:id]
-  @memo_text = File.read("./memo_data/#{@id}")
+  @memo_text = MyMemoApp::Memo.new("./memo_data/#{@id}").memo_text
   erb :edit
 end
 
 # メモ更新
 patch "/:id" do
-  File.open("./memo_data/#{params[:id]}", "w") do |file|
-    file.puts params[:memo]
-  end
+  MyMemoApp::Memo.new("./memo_data/#{params[:id]}").edit(params[:memo])
   redirect to("/")
 end
 
@@ -49,6 +48,6 @@ end
 # メモ表示ページ
 get "/:id" do
   @id = params[:id]
-  @memo_text = File.read("./memo_data/#{@id}").gsub("\n", "<br>")
+  @memo_text = MyMemoApp::Memo.new("./memo_data/#{@id}").memo_text_show
   erb :show
 end
