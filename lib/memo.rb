@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
+require "securerandom"
+
 module MyMemoApp
   class Memo
     def initialize(path)
       @path = path
+    end
+
+    def save(memo_text)
+      File.open("#{@path}#{SecureRandom.uuid}", "w", 0o0666) do |file|
+        file.puts memo_text
+      end
     end
 
     def memo_text

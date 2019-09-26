@@ -3,9 +3,8 @@
 require "sinatra"
 require "sinatra/reloader"
 require "fileutils"
-require "./lib/memo_list.rb"
-require "./lib/new_memo.rb"
-require "./lib/memo.rb"
+require_relative "./lib/memo_list.rb"
+require_relative "./lib/memo.rb"
 
 # トップ（index）ページ
 get "/" do
@@ -22,7 +21,7 @@ end
 
 # 新規メモ作成
 post "/" do
-  MyMemoApp::NewMemo.new("./memo_data/", params[:memo]).save
+  MyMemoApp::Memo.new("./memo_data/").save(params[:memo])
   redirect to("/")
 end
 
